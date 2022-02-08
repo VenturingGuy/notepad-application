@@ -8,10 +8,21 @@
     <meta name="description" content="Notepad application that allows for the ability to add/delete notes on a notepad.">
     <meta name="author" content="Luis Ventura">
 
-    <link rel="stylesheet" src="/css/style.css">
+    <link rel="stylesheet" src="/Assets/Style/css/style.css">
 
   </head>
   <body>
-    <script src="/js/script.js"></script>
+    <div id="wrapper">
+      <h1>Notepad Application</h1>
+      <section id="notepad-body">
+        <form class="new-notepad-form">
+          <div class="new-notepad-title">
+            <label for="title">Notepad Title</label>
+            <input type="text" name="title" id="title" maxlength="255" placeholder="My notepad title..." required>
+          </div>
+        </form>
+      </section>
+    </div>
+    <script src="/Assets/Js/script.js"></script>
   </body>
 </html>
