@@ -14,17 +14,31 @@
   <body>
     <div class="wrapper">
       <h1>Notepad Application</h1>
-        <section class="notepad">
-          <form class="notepad__note">
-            <div class="notepad__title">
-              <label class="notepad__label" for="title">Notepad Title</label>
-              <input class="notepad__input" type="text" name="title" id="title" maxlength="255" placeholder="My notepad title..." required>
-            </div>
-            <button class="notepad__button">View Stats</button>
-            <button class="notepad__button">Save</button>
-            <button class="notepad__button">Delete</button>          
-          </form>
-        </section>
+        <div class="notepad">
+          <section class="notepad__title">
+            <form class="notepad__form">
+              <div class="notepad__head">
+                <label class="notepad__label" for="notepad-title">Notepad Title</label>
+                <input class="notepad__input" type="text" name="notepad-title" id="notepad-title" maxlength="255" placeholder="My notepad title..." required>
+              </div>
+              <button class="notepad__button">View Stats</button>
+              <button class="notepad__button">Save</button>
+              <button class="notepad__button">Delete</button>     
+            </form>
+          </section>
+          <section class="notepad__notes">
+            <form class="notepad__form">
+              <div class="notepad__head">
+                <label class="notepad__label" for="note-title">My Notes</label>
+                <input class="notepad__input" type="text" name="note-title" id="note-title" maxlength="255" placeholder="Enter note title..." required>
+              </div>
+              <div class="notepad__head">
+                <input class="notepad__input" for="note-content" name="note-text" id="note-text" max-length="1000" placeholder="Enter note title..." required>
+              </div>
+              <button class="notepad__button">Add</button>
+            </form>
+          </section>
+        </div>
     </div>
     <script src="/Assets/Js/script.js"></script>
   </body>
