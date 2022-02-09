@@ -21,9 +21,9 @@
                 <label class="notepad__label" for="notepad-title">Notepad Title</label>
                 <input class="notepad__input" type="text" name="notepad-title" id="notepad-title" maxlength="255" placeholder="My notepad title..." required>
               </div>
-              <button class="notepad__button">View Stats</button>
-              <button class="notepad__button">Save</button>
-              <button class="notepad__button">Delete</button>     
+              <button class="notepad__button" id="view-stats">View Stats</button>
+              <button class="notepad__button" id="save-notepad">Save</button>
+              <button class="notepad__button" id="delete-notepad">Delete</button>     
             </form>
           </section>
           <section class="notepad__notes">
@@ -35,8 +35,12 @@
               <div class="notepad__head">
                 <input class="notepad__input" for="note-content" name="note-text" id="note-text" max-length="1000" placeholder="Enter note title..." required>
               </div>
-              <button class="notepad__button">Add</button>
+              <button class="notepad__button" id="add-note">Add</button>
             </form>
+            <div class="notepad__saved"> <!--Array of saved notes.-->
+              <div class="notepad__notename">Sample note 1 title</div>
+              <div class="notepad__notetext">This is my first note text.</div>
+            </div>
           </section>
         </div>
     </div>
