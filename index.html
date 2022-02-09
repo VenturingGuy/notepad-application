@@ -16,9 +16,9 @@
       <h1>Notepad Application</h1>
         <div class="notepad">
           <section class="notepad__title">
-            <form class="notepad__form">
+            <form class="notepad__form" onsubmit="store()">
               <div class="notepad__head">
-                <label class="notepad__label" for="notepad-title">Notepad Title</label>
+                <label class="notepad__label" id="user-notepad" for="notepad-title">Notepad Title</label>
                 <input class="notepad__input" type="text" name="notepad-title" id="notepad-title" maxlength="255" placeholder="My notepad title..." required>
               </div>
               <button class="notepad__button" id="view-stats">View Stats</button>
@@ -40,6 +40,7 @@
             <div class="notepad__saved"> <!--Array of saved notes.-->
               <div class="notepad__notename">Sample note 1 title</div>
               <div class="notepad__notetext">This is my first note text.</div>
+              <button class="notepad__button" id="delete-note">Delete</button>
             </div>
           </section>
         </div>
