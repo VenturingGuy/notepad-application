@@ -40,3 +40,7 @@ function displayNotes() {
     container.appendChild(noteText);
   })
 }
+
+function deleteNotepad() {
+  localStorage.clear();
+}

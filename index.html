@@ -16,14 +16,14 @@
       <h1>Notepad Application</h1>
         <div class="notepad">
           <section class="notepad__title">
-            <form class="notepad__form" onsubmit="store()">
+            <form class="notepad__form">
               <div class="notepad__head">
                 <label class="notepad__label" id="user-notepad" for="notepad-title">Notepad Title</label>
                 <input class="notepad__input" type="text" name="notepad-title" id="notepad-title" maxlength="255" placeholder="My notepad title..." required>
               </div>
               <button class="notepad__button" id="view-stats">View Stats</button>
-              <button class="notepad__button" id="save-notepad">Save</button>
-              <button class="notepad__button" id="delete-notepad">Delete</button>     
+              <button class="notepad__button" id="save-notepad" onclick="store()">Save</button>
+              <button class="notepad__button" id="delete-notepad" onclick="deleteNotepad()" formnovalidate>Delete</button>     
             </form>
           </section>
           <section class="notepad__notes">
