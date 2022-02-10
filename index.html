@@ -22,11 +22,9 @@
                 <input class="notepad__input" type="text" name="notepad-title" id="notepad-title" maxlength="255" placeholder="My notepad title..." required>
               </div>
               <button class="notepad__button" id="view-stats">View Stats</button>
-              <button class="notepad__button" id="save-notepad" onclick="store()">Save</button>
+              <button class="notepad__button" id="save-notepad" onclick="storeNotepadTitle()">Save</button>
               <button class="notepad__button" id="delete-notepad" onclick="deleteNotepad()" formnovalidate>Delete</button>     
             </form>
-          </section>
-          <section class="notepad__notes">
             <form class="notepad__form" onsubmit="storeNote()">
               <div class="notepad__head">
                 <label class="notepad__label" for="note-title">My Notes</label>
@@ -37,6 +35,8 @@
               </div>
               <button class="notepad__button" id="add-note">Add</button>
             </form>
+          </section>
+          <section class="notepad__notes">
             <div class="notepad__saved"> <!--Array of saved notes.-->
               <button class="notepad__button" id="delete-note">Delete</button>
             </div>

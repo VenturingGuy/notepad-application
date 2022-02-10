@@ -12,7 +12,7 @@ function updatePage() {
   }
 }
 
-function store() {
+function storeNotepadTitle() {
   const inputNotepad = document.getElementById("notepad-title");
   localStorage.setItem("notepad-title", inputNotepad.value);
 }
