@@ -10,9 +10,9 @@ function updatePage() {
   if (localStorage.getItem("notepads")){
     notepads = JSON.parse(localStorage.getItem("notepads"));
     document.getElementById("user-notepad").innerText = notepads.notepadTitles[0];
-    
-    displayNotes();
   }
+  displayNotepads();
+  displayNotes();
 }
 
 function storeNotepad() {
@@ -32,12 +32,23 @@ function storeNote() {
   localStorage.setItem("notepads", JSON.stringify(notepads));
 }
 
+function displayNotepads() {
+  const container = document.querySelector(".notepad__savednotepads");
+
+  notepads.notepadTitles.forEach(function(title){
+    const notepadName = document.createElement("div");
+    notepadName.setAttribute("class", "notepad");
+    notepadName.innerHTML = title;
+    container.appendChild(notepadName);
+  })
+}
+
 function displayNotes() {
   const container = document.querySelector(".notepad__saved");
 
   notepads.notes.forEach(function(note){
-    let noteName = document.createElement("div");
-    let noteText = document.createElement("div");
+    const noteName = document.createElement("div");
+    const noteText = document.createElement("div");
     noteName.setAttribute("class", "notepad__notename");
     noteName.textContent = note.noteTitle;
     noteText.setAttribute("class", "notepad__notetext");
