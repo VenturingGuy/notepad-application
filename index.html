@@ -16,22 +16,20 @@
       <h1>Notepad Application</h1>
         <div class="notepad">
           <section class="notepad__title">
-            <form class="notepad__form">
+            <form onsubmit="storeNotepad()" class="notepad__form">
               <div class="notepad__head">
                 <label class="notepad__label" id="user-notepad" for="notepad-title">Notepad Title</label>
                 <input class="notepad__input" type="text" name="notepad-title" id="notepad-title" maxlength="255" placeholder="My notepad title..." required>
               </div>
               <button class="notepad__button" id="view-stats">View Stats</button>
-              <button class="notepad__button" id="save-notepad" onclick="storeNotepadTitle()">Save</button>
-              <button class="notepad__button" id="delete-notepad" onclick="deleteNotepad()" formnovalidate>Delete</button>     
-            </form>
-            <form class="notepad__form" onsubmit="storeNote()">
+              <button class="notepad__button" id="save-notepad">Save</button>
+              <button class="notepad__button" id="delete-notepad" onclick="deleteNotepad()" formnovalidate>Delete</button>
               <div class="notepad__head">
                 <label class="notepad__label" for="note-title">My Notes</label>
                 <input class="notepad__input" type="text" name="note-title" id="note-title" maxlength="255" placeholder="Enter note title..." required>
               </div>
               <div class="notepad__head">
-                <input class="notepad__input" for="note-content" name="note-text" id="note-text" max-length="1000" placeholder="Enter note title..." required>
+                <input class="notepad__input" for="note-content" name="note-text" id="note-text" max-length="1000" placeholder="Enter note text..." required>
               </div>
               <button class="notepad__button" id="add-note">Add</button>
             </form>

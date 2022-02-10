@@ -1,35 +1,41 @@
-let notes = [];
+let notepads = {
+    notepadTitles: [],
+    notes: []
+};
+
 
 updatePage();
 
 function updatePage() {
-  if (localStorage.getItem("notepad-title")){
-    document.getElementById("user-notepad").innerHTML = localStorage.getItem("notepad-title");
-  }
-  if (localStorage.getItem("notes")){
-    notes = JSON.parse(localStorage.getItem("notes"));
+  if (localStorage.getItem("notepads")){
+    notepads = JSON.parse(localStorage.getItem("notepads"));
+    document.getElementById("user-notepad").innerText = notepads.notepadTitles[0];
+    
     displayNotes();
   }
 }
 
-function storeNotepadTitle() {
-  const inputNotepad = document.getElementById("notepad-title");
-  localStorage.setItem("notepad-title", inputNotepad.value);
+function storeNotepad() {
+  const notepadTitle = document.getElementById("notepad-title").value;
+  console.log(notepads.notepadTitles);
+  notepads.notepadTitles.push(notepadTitle);
+  localStorage.setItem("notepads", JSON.stringify(notepads));
+  storeNote();
 }
 
 function storeNote() {
+  console.log(notepads.notes)
   const noteTitle = document.getElementById("note-title").value;
   const noteText = document.getElementById("note-text").value;
   const newNote = {noteTitle, noteText};
-  notes.push(newNote);
-  localStorage.setItem("notes", JSON.stringify(notes));
+  notepads.notes.push(newNote);
+  localStorage.setItem("notepads", JSON.stringify(notepads));
 }
 
 function displayNotes() {
   const container = document.querySelector(".notepad__saved");
-  console.log(container);
 
-  notes.forEach(function(note){
+  notepads.notes.forEach(function(note){
     let noteName = document.createElement("div");
     let noteText = document.createElement("div");
     noteName.setAttribute("class", "notepad__notename");
