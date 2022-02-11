@@ -18,9 +18,9 @@
       <section class="wrapper__notepads">
         <div class="notepad">
           <section class="notepad__savednotepads">
-            
+            <!-- saved notepad elements will be inserted here via the displayNotepads function -->
           </section>
-          <section class="notepad__creation">
+          <section class="notepad__creation" hidden>
             <form onsubmit="storeNotepad()" class="notepad__form">
               <div class="notepad__head">
                 <label class="notepad__label" id="user-notepad" for="notepad-title">Notepad Title</label>
@@ -39,11 +39,11 @@
               <button class="notepad__button" id="add-note">Add</button>
             </form>
           </section>
-          <section class="notepad__notes">
-            <div class="notepad__saved"> <!--Array of saved notes.-->
-              <button class="notepad__button" id="delete-note">Delete</button>
-            </div>
-          </section>
+          <!-- <section class="notepad__notes"> -->
+            <!-- <div class="notepad__saved"> Array of saved notes. -->
+              <!-- <button class="notepad__button" id="delete-note">Delete</button> -->
+            <!-- </div> -->
+          <!-- </section> -->
 
         </div>
 
