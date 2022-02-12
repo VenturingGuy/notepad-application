@@ -14,7 +14,7 @@ function updatePage() {
 }
 
 function storeNotepad() {
-  const notepadTitle = document.getElementById("notepad-title").value;
+  const notepadTitle = document.getElementById("new-notepad-title").value;
   const newIndex = notepads.length === 1 ? notepads.length - 1 : notepads.length;
   console.log(notepads);
   console.log(notepads[newIndex]);
@@ -23,7 +23,17 @@ function storeNotepad() {
   localStorage.setItem("notepads", JSON.stringify(notepads));
 }
 
-function updateNotepad(){};
+function changeNotepadName(index){
+  const notepadTitle = document.getElementById(`notepad-${index}-title`).value;
+  if (notepads[index].notepadTitle !== notepadTitle){
+    notepads[index].notepadTitle = notepadTitle;
+    localStorage.setItem("notepads", JSON.stringify(notepads));
+  }
+}
+
+function updateNotepad(){
+  // intend to call changeNotePadName and changeNoteDetails
+}
 
 function editNotepad(index) {
   const container = document.getElementById(`notepad-${index}`);
@@ -34,15 +44,15 @@ function editNotepad(index) {
   section.setAttribute("hidden", "hidden");
   
   const form = document.createElement("form");
-  form.setAttribute("class", "notepad__form");
+  form.setAttribute("class", "notepad__edit");
   form.setAttribute("id", `form-${index}`);
-  form.setAttribute("onsubmit", "updateNotepad()")
+  form.setAttribute("onsubmit", `changeNotepadName(${index})`);
 
   const notepadTitle = document.createElement("label");
 
   notepadTitle.setAttribute("class", "notepad__label");
   notepadTitle.setAttribute("id", "user-notepad");
-  notepadTitle.setAttribute("for", "notepad-title");
+  notepadTitle.setAttribute("for", `notepad-${index}-title`);
   notepadTitle.innerText = "Notepad Title";
 
   const notepadNameContainer = document.createElement("div");
@@ -54,8 +64,9 @@ function editNotepad(index) {
   statsButton.innerText = "View Stats";
 
   const saveNotepad = document.createElement("button");
-  saveNotepad.setAttribute("id", "save-notepad");
+  saveNotepad.setAttribute("id", "update-notepad-title");
   saveNotepad.innerText = "Save";
+  
 
   const deleteNotepad = document.createElement("button");
   deleteNotepad.innerText = "Delete";
@@ -64,6 +75,8 @@ function editNotepad(index) {
 
   const notepadTitleInput = document.createElement("input");
   notepadTitleInput.setAttribute("placeholder", notepads[index].notepadTitle);
+  notepadTitleInput.setAttribute("id", `notepad-${index}-title`);
+  
 
   notepadTitleInput.innerText = notepads[index].notepadTitle;
 
@@ -110,14 +123,10 @@ function listNotepads() {
       };
       // notepadName.innerHTML = notepad.notepadTitle;
       container.appendChild(notepadName);
-      displayNotepad(index);
+      editNotepad(index);
     })
   }
   container.appendChild(button);
-}
-
-function displayNotepad(index) {
-  editNotepad(index);
 }
 
 function displayNotes(index) {
@@ -126,10 +135,7 @@ function displayNotes(index) {
   const addNote= document.createElement("button");
   addNote.innerText = "Add";
   
-
   currentNotepad.notes.forEach(note => {
-    
-    console.log(form);
 
     const noteNameContainer = document.createElement("div");
     const noteTextContainer = document.createElement("div");
