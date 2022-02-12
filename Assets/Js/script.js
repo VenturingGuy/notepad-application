@@ -23,6 +23,64 @@ function storeNotepad() {
   localStorage.setItem("notepads", JSON.stringify(notepads));
 }
 
+function updateNotepad(){};
+
+function editNotepad(index) {
+  const container = document.getElementById(`notepad-${index}`);
+  
+  const section = document.createElement("section");
+  section.setAttribute("class", "notepad__current");
+  section.setAttribute("id", `current-${index}`);
+  section.setAttribute("hidden", "hidden");
+  
+  const form = document.createElement("form");
+  form.setAttribute("class", "notepad__form");
+  form.setAttribute("id", `form-${index}`);
+  form.setAttribute("onsubmit", "updateNotepad()")
+
+  const notepadTitle = document.createElement("label");
+
+  notepadTitle.setAttribute("class", "notepad__label");
+  notepadTitle.setAttribute("id", "user-notepad");
+  notepadTitle.setAttribute("for", "notepad-title");
+  notepadTitle.innerText = "Notepad Title";
+
+  const notepadNameContainer = document.createElement("div");
+
+  notepadNameContainer.setAttribute("class", "notepad__head");
+
+  const statsButton = document.createElement("button");
+  statsButton.setAttribute("id", "view-stats");
+  statsButton.innerText = "View Stats";
+
+  const saveNotepad = document.createElement("button");
+  saveNotepad.setAttribute("id", "save-notepad");
+  saveNotepad.innerText = "Save";
+
+  const deleteNotepad = document.createElement("button");
+  deleteNotepad.innerText = "Delete";
+
+  deleteNotepad.setAttribute("id", "delete-notepad");
+
+  const notepadTitleInput = document.createElement("input");
+  notepadTitleInput.setAttribute("placeholder", notepads[index].notepadTitle);
+
+  notepadTitleInput.innerText = notepads[index].notepadTitle;
+
+  notepadTitleInput.setAttribute("class", "notepad__input");
+
+  container.appendChild(section);
+  section.appendChild(form);
+  form.appendChild(notepadNameContainer);
+  notepadNameContainer.appendChild(notepadTitle);
+  notepadNameContainer.appendChild(notepadTitleInput);
+  form.appendChild(statsButton);
+  form.appendChild(saveNotepad);
+  form.appendChild(deleteNotepad);
+  displayNotes(index);
+  
+}
+
 function storeNote() {
   const noteTitle = document.getElementById("note-title").value;
   const noteText = document.getElementById("note-text").value;
@@ -42,12 +100,15 @@ function listNotepads() {
   if (localStorage.getItem("notepads")){
     notepads.forEach(function(notepad, index){
       const notepadName = document.createElement("div");
+      const titleDiv = document.createElement("h3");
+      titleDiv.textContent = notepad.notepadTitle;
+      notepadName.appendChild(titleDiv);
       notepadName.setAttribute("class", "notepad__entry");
       notepadName.setAttribute("id", `notepad-${index}`);
-      notepadName.onclick = () => {
-        document.getElementById(`saved-${index}`).toggleAttribute("hidden")
+      titleDiv.onclick = () => {
+        document.getElementById(`current-${index}`).toggleAttribute("hidden");
       };
-      notepadName.innerHTML = notepad.notepadTitle;
+      // notepadName.innerHTML = notepad.notepadTitle;
       container.appendChild(notepadName);
       displayNotepad(index);
     })
@@ -56,32 +117,48 @@ function listNotepads() {
 }
 
 function displayNotepad(index) {
-  const container = document.getElementById(`notepad-${index}`);
-  console.log(notepads[index].notes);
-  const title=document.createElement("div");
-  title.setAttribute("class", "notepad__saved");
-  title.setAttribute("id", `saved-${index}`);
-  title.setAttribute("hidden", "hidden");
-  container.appendChild(title);
-  displayNotes(index);
+  editNotepad(index);
 }
 
 function displayNotes(index) {
-  const container = document.getElementById(`saved-${index}`);
   const currentNotepad = notepads[index];
-  console.log(currentNotepad);
-  console.log(currentNotepad.notes);
+  const form = document.getElementById(`form-${index}`);
+  const addNote= document.createElement("button");
+  addNote.innerText = "Add";
+  
 
   currentNotepad.notes.forEach(note => {
-    const noteName = document.createElement("div");
-    const noteText = document.createElement("div");
-    noteName.setAttribute("class", "notepad__notename");
-    noteName.textContent = note.noteTitle;
-    noteText.setAttribute("class", "notepad__notetext");
-    noteText.textContent = note.noteText;
-    container.appendChild(noteName);
-    container.appendChild(noteText);
+    
+    console.log(form);
+
+    const noteNameContainer = document.createElement("div");
+    const noteTextContainer = document.createElement("div");
+    noteNameContainer.setAttribute("class", "notepad__head");
+
+    noteTextContainer.setAttribute("class", "notepad__head");
+
+    const noteTitle = document.createElement("label");
+    const noteText = document.createElement("label");
+    noteText.setAttribute("class", "notepad__label");
+
+    const noteTitleInput = document.createElement("input");
+    const noteTextInput = document.createElement("input");
+
+    noteTitleInput.setAttribute("class", "notepad__input");
+    noteTextInput.setAttribute("class", "notepad__input");
+
+    noteNameContainer.appendChild(noteTitle);
+    noteNameContainer.appendChild(noteTitleInput);
+    form.appendChild(noteNameContainer);
+    form.appendChild(noteTextContainer);
+    noteTextContainer.appendChild(noteText);
+    noteTextContainer.appendChild(noteTextInput);
+
+    noteTitle.setAttribute("class", "notepad__label");
+    noteTitle.innerText = "My Notes";
   });
+
+  form.appendChild(addNote);
 }
 
 function deleteNotepad() {
