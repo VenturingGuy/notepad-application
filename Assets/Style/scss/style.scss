@@ -1,8 +1,12 @@
 @import "./_colors";
 @import "./_typography";
-
+ 
+body {
+  background: $body-background;
+}
 .notepad {
   &__button {
+    background: $blue;
   }
   &__creation {
   }
@@ -17,7 +21,23 @@
   &__savednotepads {
   }
 }
+
+.add-button {
+  background: $green;
+}
+.save-button {
+  background: $blue;
+}
+.delete-button {
+  background: $red;
+}
+
+::placeholder {
+  color: $placeholder;
+}
 .wrapper {
+  background-color: $white;
+  border-radius: 4px;
   &__notepads {
   }
 }

@@ -1,0 +1,54 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+}
+
+h1, h2, h3, h4 {
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+body {
+  background: #eee;
+}
+
+.notepad__button {
+  background: #39acdc;
+}
+.add-button {
+  background: #57b93e;
+}
+
+.save-button {
+  background: #39acdc;
+}
+
+.delete-button {
+  background: #ec3646;
+}
+
+::placeholder {
+  color: #aaaaaa;
+}
+
+.wrapper {
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+/*# sourceMappingURL=style.css.map */

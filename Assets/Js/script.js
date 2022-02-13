@@ -1,3 +1,7 @@
+var fileref=document.createElement("link")
+fileref.setAttribute("rel", "stylesheet")
+fileref.setAttribute("type", "text/css")
+fileref.setAttribute("href", "/Assets/Style/css/style.css")
 let notepads = [{
     notepadTitle: "",
     notes: []
@@ -73,13 +77,14 @@ function editNotepad(index) {
 
   const saveNotepad = document.createElement("button");
   saveNotepad.setAttribute("id", "update-notepad-title");
+  saveNotepad.setAttribute("class", "notepad__button save-button");
   saveNotepad.innerText = "Save";
   
 
   const deleteNotepad = document.createElement("button");
   deleteNotepad.innerText = "Delete";
-
   deleteNotepad.setAttribute("id", "delete-notepad");
+  deleteNotepad.setAttribute("class", "notepad__button delete-button");
 
   const notepadTitleInput = document.createElement("input");
   notepadTitleInput.value = notepads[index].notepadTitle;
@@ -112,7 +117,7 @@ function storeNote() {
 function listNotepads() {
   const container = document.querySelector(".notepad__savednotepads");
   const button = document.createElement("button");
-  button.setAttribute("class", "notepad__buton");
+  button.setAttribute("class", "notepad__button");
   button.innerHTML = "New Notepad";
   button.onclick = () => {
     document.querySelector(".notepad__creation").toggleAttribute("hidden");
@@ -152,6 +157,10 @@ function displayNotes(index) {
   const currentNotepad = notepads[index];
   const form = document.getElementById(`form-${index}`);
   const addNote = document.createElement("button");
+  addNote.innerText = "Add";
+  addNote.setAttribute("type", "button");
+  addNote.setAttribute("class", "notepad__button add-button");
+
   const header = document.createElement("h4");
   
   const newNameContainer = document.createElement("div");
@@ -169,8 +178,6 @@ function displayNotes(index) {
   newTextInput.setAttribute("class", "notepad__input");
 
   header.innerText = "My Notes";
-  addNote.innerText = "Add";
-  addNote.setAttribute("type", "button");
   
   addNote.onclick = () => {
     pushNote(currentNotepad, {noteTitle: newTitleInput.value, noteText: newTextInput.value});
@@ -215,9 +222,11 @@ function displayNotes(index) {
     const updateNote = document.createElement("button");
     updateNote.setAttribute("id", `update-note-${index}`);
     updateNote.setAttribute("type", "button");
+    updateNote.setAttribute("class", "notepad__button");
     updateNote.innerText = "Update";
  
     const deleteNote = document.createElement("button");
+    deleteNote.setAttribute("class", "notepad__button delete-button");
     deleteNote.innerText = "Delete";
     deleteNote.onclick = function(){
       currentNotepad.notes.splice(index, 1);
