@@ -73,6 +73,7 @@ function editNotepad(index) {
   const statsButton = document.createElement("button");
   statsButton.setAttribute("id", "view-stats");
   statsButton.setAttribute("type", "button");
+  statsButton.setAttribute("class", "notepad__button");
   statsButton.innerText = "View Stats";
 
   const saveNotepad = document.createElement("button");
@@ -204,6 +205,9 @@ function displayNotes(index) {
     container.setAttribute("id", `notepad-note-${index}`);
     form.appendChild(container);
 
+    const buttonContainer = document.createElement("div");
+    buttonContainer.setAttribute("class", "notepad__container button-container");
+
     const noteNameContainer = document.createElement("div");
     noteNameContainer.setAttribute("class", "notepad__head");
     const noteTextContainer = document.createElement("div");
@@ -241,8 +245,10 @@ function displayNotes(index) {
     noteTextContainer.appendChild(noteText);
     noteTextContainer.appendChild(noteTextInput);
 
-    container.appendChild(updateNote);
-    container.appendChild(deleteNote);
+    container.appendChild(buttonContainer);
+
+    buttonContainer.appendChild(updateNote);
+    buttonContainer.appendChild(deleteNote);
 
     updateNote.onclick = function(){
       note.noteTitle = noteTitleInput.value;

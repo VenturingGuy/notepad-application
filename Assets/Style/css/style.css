@@ -34,13 +34,8 @@ h5 {
 }
 
 html, body {
-  min-height: 100vh;
-}
-@media only screen and (min-width: 320) and (max-width: 1024) {
-  html, body {
-    width: 100vw;
-    height: 100vh;
-  }
+  height: 100%;
+  text-align: center;
 }
 
 body {
@@ -51,14 +46,49 @@ body {
   display: none !important;
 }
 
-.notepad__current {
+h1 {
+  padding: 0.25rem 0;
+  margin: 0.75rem 0;
+  align-self: center;
+}
+@media (min-width: 1024px) {
+  h1 {
+    padding: 0.25rem 0;
+    margin: 1rem;
+    width: fit-content;
+    align-self: start;
+  }
+}
+
+.notepad__button {
+  min-width: 17.5%;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 0.25rem 0;
+  font-weight: bold;
+}
+.notepad__button:hover {
+  cursor: pointer;
+}
+.notepad__container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.notepad__edit, .notepad__entry {
+  padding: 0.25rem 0;
+  margin: 0.5rem 0;
 }
 .notepad__head {
-  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+  margin: 0.75rem 0;
+}
+.notepad__input {
+  padding: 1em;
+  margin: 0.25rem;
 }
 .add-button {
   background: #57b93e;
@@ -81,10 +111,14 @@ body {
 }
 
 .wrapper {
+  display: flex;
+  min-width: 320px;
+  min-height: 100%;
+  flex-direction: column;
   background-color: #fff;
   border-radius: 4px;
-  margin: 0 1em;
-  padding: 0.25em 1em;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */
