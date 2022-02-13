@@ -74,7 +74,7 @@ function editNotepad(index) {
   deleteNotepad.setAttribute("id", "delete-notepad");
 
   const notepadTitleInput = document.createElement("input");
-  notepadTitleInput.setAttribute("placeholder", notepads[index].notepadTitle);
+  notepadTitleInput.value = notepads[index].notepadTitle;
   notepadTitleInput.setAttribute("id", `notepad-${index}-title`);
   
 
@@ -121,7 +121,6 @@ function listNotepads() {
       titleDiv.onclick = () => {
         document.getElementById(`current-${index}`).toggleAttribute("hidden");
       };
-      // notepadName.innerHTML = notepad.notepadTitle;
       container.appendChild(notepadName);
       editNotepad(index);
     })
@@ -129,42 +128,82 @@ function listNotepads() {
   container.appendChild(button);
 }
 
+function notePlaceholder(title, text) {
+
+}
+
 function displayNotes(index) {
   const currentNotepad = notepads[index];
   const form = document.getElementById(`form-${index}`);
-  const addNote= document.createElement("button");
-  addNote.innerText = "Add";
+  const addNote = document.createElement("button");
+  const header = document.createElement("h4");
   
-  currentNotepad.notes.forEach(note => {
+  const newNameContainer = document.createElement("div");
+  newNameContainer.setAttribute("class", "notepad__head");
+  const newTextContainer = document.createElement("div");
+  newTextContainer.setAttribute("class", "notepad__head");
+
+  const noteText = document.createElement("label");
+  noteText.setAttribute("class", "notepad__label");
+
+  const newTitleInput = document.createElement("input");
+  newTitleInput.setAttribute("class", "notepad__input");
+
+  const noteTextInput = document.createElement("input");
+  noteTextInput.setAttribute("class", "notepad__input");
+
+  header.innerText = "My Notes";
+  addNote.innerText = "Add";
+  form.appendChild(header);
+  newTitleInput.setAttribute("placeholder", "Enter Note Title...");
+  noteTextInput.setAttribute("placeholder", "Enter Note...");
+
+  form.appendChild(newNameContainer);
+  newNameContainer.appendChild(newTitleInput);
+  
+  form.appendChild(newTextContainer);
+  newTextContainer.appendChild(noteText);
+  newTextContainer.appendChild(noteTextInput);
+
+  form.appendChild(addNote);
+  
+  currentNotepad.notes.forEach((note, index) => {
+    console.log(note);
+    const container = document.createElement("div");
+    container.setAttribute("class", "notepad__editnote");
+    container.setAttribute("id", `notepad-note-${index}`);
+    form.appendChild(container);
 
     const noteNameContainer = document.createElement("div");
-    const noteTextContainer = document.createElement("div");
     noteNameContainer.setAttribute("class", "notepad__head");
-
+    const noteTextContainer = document.createElement("div");
     noteTextContainer.setAttribute("class", "notepad__head");
 
-    const noteTitle = document.createElement("label");
-    const noteText = document.createElement("label");
-    noteText.setAttribute("class", "notepad__label");
-
     const noteTitleInput = document.createElement("input");
-    const noteTextInput = document.createElement("input");
-
     noteTitleInput.setAttribute("class", "notepad__input");
-    noteTextInput.setAttribute("class", "notepad__input");
 
-    noteNameContainer.appendChild(noteTitle);
+    const noteTextInput = document.createElement("input");
+    noteTextInput.setAttribute("class", "notepad__input");
+    noteTitleInput.value = note.noteTitle;
+    noteTextInput.value = note.noteText;
+
+    const updateNote = document.createElement("button");
+    updateNote.innerText = "Update";
+
+    const deleteNote = document.createElement("button");
+    deleteNote.innerText = "Delete";
+
+    container.appendChild(noteNameContainer);
     noteNameContainer.appendChild(noteTitleInput);
-    form.appendChild(noteNameContainer);
-    form.appendChild(noteTextContainer);
+    
+    container.appendChild(noteTextContainer);
     noteTextContainer.appendChild(noteText);
     noteTextContainer.appendChild(noteTextInput);
 
-    noteTitle.setAttribute("class", "notepad__label");
-    noteTitle.innerText = "My Notes";
-  });
+    container.appendChild(updateNote);
+    container.appendChild(deleteNote);
 
-  form.appendChild(addNote);
+  });
 }
 
 function deleteNotepad() {
