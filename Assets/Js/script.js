@@ -31,6 +31,12 @@ function changeNotepadName(index){
   }
 }
 
+function changeNoteDetails(currentNotepad, updatedNotes) {
+  console.log(updatedNotes)
+  // currentNotepad.notes[index] = updatedNotes;
+  localStorage.setItem("notepads", JSON.stringify(notepads));
+}
+
 function updateNotepad(){
   // intend to call changeNotePadName and changeNoteDetails
 }
@@ -132,6 +138,13 @@ function notePlaceholder(title, text) {
 
 }
 
+function pushNote(currentNotepad, newNote){
+  if (newNote.noteTitle !== "" && newNote.noteText !== ""){
+    currentNotepad.notes.push(newNote);
+    localStorage.setItem("notepads", JSON.stringify(notepads));
+  }
+}
+
 function displayNotes(index) {
   const currentNotepad = notepads[index];
   const form = document.getElementById(`form-${index}`);
@@ -154,6 +167,9 @@ function displayNotes(index) {
 
   header.innerText = "My Notes";
   addNote.innerText = "Add";
+  addNote.setAttribute("type", "button");
+  
+  addNote.onclick = () => pushNote(currentNotepad, {noteTitle: newTitleInput.value, noteText: noteTextInput.value});
   form.appendChild(header);
   newTitleInput.setAttribute("placeholder", "Enter Note Title...");
   noteTextInput.setAttribute("placeholder", "Enter Note...");
@@ -181,14 +197,23 @@ function displayNotes(index) {
 
     const noteTitleInput = document.createElement("input");
     noteTitleInput.setAttribute("class", "notepad__input");
+    noteTitleInput.setAttribute("id", `note-${index}-title`);
 
     const noteTextInput = document.createElement("input");
     noteTextInput.setAttribute("class", "notepad__input");
+    noteTextInput.setAttribute("id", `note-${index}-text`);
+
     noteTitleInput.value = note.noteTitle;
     noteTextInput.value = note.noteText;
 
     const updateNote = document.createElement("button");
+    updateNote.setAttribute("id", `update-note-${index}`);
+    updateNote.setAttribute("type", "button");
     updateNote.innerText = "Update";
+
+    const updateDetails = { noteTitle: noteTitleInput.value, noteText: noteTextInput.value};
+    console.log(updateDetails);
+    updateNote.onclick = changeNoteDetails(index, updateDetails);
 
     const deleteNote = document.createElement("button");
     deleteNote.innerText = "Delete";
