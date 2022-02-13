@@ -1,18 +1,42 @@
 @import "./_colors";
 @import "./_typography";
- 
+@import "./responsive_mixin";
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  min-height: 100vh;
+  @include responsive(320, 1024){
+    width: 100vw;
+    height: 100vh;
+  }
+}
 body {
   background: $body-background;
 }
+
+[hidden] {
+  display: none !important;
+}
+
 .notepad {
   &__button {
-    background: $blue;
   }
   &__creation {
+  }
+  &__current {
+    display: flex;
   }
   &__form {
   }
   &__head {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   &__input {
   }
@@ -25,11 +49,15 @@ body {
 .add-button {
   background: $green;
 }
-.save-button {
+.save-button, .update-button {
   background: $blue;
 }
 .delete-button {
   background: $red;
+}
+
+.add-button, .save-button, .update-button, .delete-button{
+  color: $white;
 }
 
 ::placeholder {
@@ -38,6 +66,8 @@ body {
 .wrapper {
   background-color: $white;
   border-radius: 4px;
+  margin: 0 1em;
+  padding: 0.25em 1em;
   &__notepads {
   }
 }

@@ -59,16 +59,16 @@ function editNotepad(index) {
   form.setAttribute("id", `form-${index}`);
   form.setAttribute("onsubmit", `changeNotepadName(${index})`);
 
-  const notepadTitle = document.createElement("label");
+  const notepadTitle = document.createElement("h5");
 
   notepadTitle.setAttribute("class", "notepad__label");
-  notepadTitle.setAttribute("id", "user-notepad");
-  notepadTitle.setAttribute("for", `notepad-${index}-title`);
   notepadTitle.innerText = "Notepad Title";
 
   const notepadNameContainer = document.createElement("div");
-
   notepadNameContainer.setAttribute("class", "notepad__head");
+
+  const buttonContainer = document.createElement("div");
+  buttonContainer.setAttribute("class", "notepad__container button-container");
 
   const statsButton = document.createElement("button");
   statsButton.setAttribute("id", "view-stats");
@@ -97,12 +97,13 @@ function editNotepad(index) {
 
   container.appendChild(section);
   section.appendChild(form);
+  form.appendChild(notepadTitle);
   form.appendChild(notepadNameContainer);
-  notepadNameContainer.appendChild(notepadTitle);
   notepadNameContainer.appendChild(notepadTitleInput);
-  form.appendChild(statsButton);
-  form.appendChild(saveNotepad);
-  form.appendChild(deleteNotepad);
+  notepadNameContainer.appendChild(buttonContainer);
+  buttonContainer.appendChild(statsButton);
+  buttonContainer.appendChild(saveNotepad);
+  buttonContainer.appendChild(deleteNotepad);
   displayNotes(index);
   
 }
@@ -222,7 +223,7 @@ function displayNotes(index) {
     const updateNote = document.createElement("button");
     updateNote.setAttribute("id", `update-note-${index}`);
     updateNote.setAttribute("type", "button");
-    updateNote.setAttribute("class", "notepad__button");
+    updateNote.setAttribute("class", "notepad__button update-button");
     updateNote.innerText = "Update";
  
     const deleteNote = document.createElement("button");

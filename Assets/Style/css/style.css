@@ -3,7 +3,7 @@
   color: #000;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   font-weight: normal;
 }
 
@@ -23,23 +23,57 @@ h4 {
   font-size: 16px;
 }
 
+h5 {
+  font-size: 14px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+}
+@media only screen and (min-width: 320) and (max-width: 1024) {
+  html, body {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
 body {
   background: #eee;
 }
 
-.notepad__button {
-  background: #39acdc;
+[hidden] {
+  display: none !important;
+}
+
+.notepad__current {
+  display: flex;
+}
+.notepad__head {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .add-button {
   background: #57b93e;
 }
 
-.save-button {
+.save-button, .update-button {
   background: #39acdc;
 }
 
 .delete-button {
   background: #ec3646;
+}
+
+.add-button, .save-button, .update-button, .delete-button {
+  color: #fff;
 }
 
 ::placeholder {
@@ -49,6 +83,8 @@ body {
 .wrapper {
   background-color: #fff;
   border-radius: 4px;
+  margin: 0 1em;
+  padding: 0.25em 1em;
 }
 
 /*# sourceMappingURL=style.css.map */
