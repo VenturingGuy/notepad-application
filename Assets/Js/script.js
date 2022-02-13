@@ -31,10 +31,11 @@ function changeNotepadName(index){
   }
 }
 
-function changeNoteDetails(currentNotepad, updatedNotes) {
-  console.log(updatedNotes)
-  // currentNotepad.notes[index] = updatedNotes;
-  localStorage.setItem("notepads", JSON.stringify(notepads));
+function changeNoteDetails() {
+  const noteTitle = document.getElementById("note-title").value;
+  const noteText = document.getElementById("note-text").value;
+  const newNote = [{noteTitle, noteText}];
+  return newNote;
 }
 
 function updateNotepad(){
@@ -67,6 +68,7 @@ function editNotepad(index) {
 
   const statsButton = document.createElement("button");
   statsButton.setAttribute("id", "view-stats");
+  statsButton.setAttribute("type", "button");
   statsButton.innerText = "View Stats";
 
   const saveNotepad = document.createElement("button");
@@ -146,6 +148,7 @@ function pushNote(currentNotepad, newNote){
 }
 
 function displayNotes(index) {
+  
   const currentNotepad = notepads[index];
   const form = document.getElementById(`form-${index}`);
   const addNote = document.createElement("button");
@@ -162,29 +165,32 @@ function displayNotes(index) {
   const newTitleInput = document.createElement("input");
   newTitleInput.setAttribute("class", "notepad__input");
 
-  const noteTextInput = document.createElement("input");
-  noteTextInput.setAttribute("class", "notepad__input");
+  const newTextInput = document.createElement("input");
+  newTextInput.setAttribute("class", "notepad__input");
 
   header.innerText = "My Notes";
   addNote.innerText = "Add";
   addNote.setAttribute("type", "button");
   
-  addNote.onclick = () => pushNote(currentNotepad, {noteTitle: newTitleInput.value, noteText: noteTextInput.value});
+  addNote.onclick = () => {
+    pushNote(currentNotepad, {noteTitle: newTitleInput.value, noteText: newTextInput.value});
+    alert("Note added. Press save to save to notepad.");
+  }
   form.appendChild(header);
   newTitleInput.setAttribute("placeholder", "Enter Note Title...");
-  noteTextInput.setAttribute("placeholder", "Enter Note...");
+  newTextInput.setAttribute("placeholder", "Enter Note...");
 
   form.appendChild(newNameContainer);
   newNameContainer.appendChild(newTitleInput);
   
   form.appendChild(newTextContainer);
   newTextContainer.appendChild(noteText);
-  newTextContainer.appendChild(noteTextInput);
+  newTextContainer.appendChild(newTextInput);
 
   form.appendChild(addNote);
   
   currentNotepad.notes.forEach((note, index) => {
-    console.log(note);
+
     const container = document.createElement("div");
     container.setAttribute("class", "notepad__editnote");
     container.setAttribute("id", `notepad-note-${index}`);
@@ -210,11 +216,7 @@ function displayNotes(index) {
     updateNote.setAttribute("id", `update-note-${index}`);
     updateNote.setAttribute("type", "button");
     updateNote.innerText = "Update";
-
-    const updateDetails = { noteTitle: noteTitleInput.value, noteText: noteTextInput.value};
-    console.log(updateDetails);
-    updateNote.onclick = changeNoteDetails(index, updateDetails);
-
+ 
     const deleteNote = document.createElement("button");
     deleteNote.innerText = "Delete";
 
@@ -227,6 +229,12 @@ function displayNotes(index) {
 
     container.appendChild(updateNote);
     container.appendChild(deleteNote);
+
+    updateNote.onclick = function(){
+      note.noteTitle = noteTitleInput.value;
+      note.noteText = noteTextInput.value;
+      localStorage.setItem("notepads", JSON.stringify(notepads));
+    }
 
   });
 }
