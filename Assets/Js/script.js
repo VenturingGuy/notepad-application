@@ -5,12 +5,12 @@ let notepads = [{
 
 
 updatePage();
+listNotepads();
 
 function updatePage() {
   if (localStorage.getItem("notepads")){
     notepads = JSON.parse(localStorage.getItem("notepads"));
   }
-  listNotepads();
 }
 
 function storeNotepad() {
@@ -219,6 +219,11 @@ function displayNotes(index) {
  
     const deleteNote = document.createElement("button");
     deleteNote.innerText = "Delete";
+    deleteNote.onclick = function(){
+      currentNotepad.notes.splice(index, 1);
+      console.log(currentNotepad.notes);
+      localStorage.setItem("notepads", JSON.stringify(notepads));
+    }
 
     container.appendChild(noteNameContainer);
     noteNameContainer.appendChild(noteTitleInput);
@@ -234,11 +239,12 @@ function displayNotes(index) {
       note.noteTitle = noteTitleInput.value;
       note.noteText = noteTextInput.value;
       localStorage.setItem("notepads", JSON.stringify(notepads));
+      updatePage();
     }
 
   });
 }
 
 function deleteNotepad() {
-  localStorage.clear();
+  // 
 }
