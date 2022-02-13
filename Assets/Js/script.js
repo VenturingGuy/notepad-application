@@ -221,7 +221,6 @@ function displayNotes(index) {
     deleteNote.innerText = "Delete";
     deleteNote.onclick = function(){
       currentNotepad.notes.splice(index, 1);
-      console.log(currentNotepad.notes);
       localStorage.setItem("notepads", JSON.stringify(notepads));
     }
 
