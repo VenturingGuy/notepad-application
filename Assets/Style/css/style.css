@@ -60,21 +60,48 @@ h1 {
   }
 }
 
+@media (min-width: 1024px) {
+  h2, h3, h4, h5 {
+    width: fit-content;
+    align-self: start;
+    margin: 0.25rem;
+  }
+}
+
 .notepad__button {
-  min-width: 17.5%;
+  min-width: 30%;
   border: none;
   border-radius: 4px;
-  padding: 8px;
-  margin: 0.25rem 0;
+  padding: 1rem;
+  margin: 0.5rem 0;
   font-weight: bold;
 }
 .notepad__button:hover {
   cursor: pointer;
 }
+@media (min-width: 1024px) {
+  .notepad__button.add-button {
+    margin: 0.5rem 0.25rem;
+    min-width: 5%;
+    max-width: 10%;
+  }
+}
 .notepad__container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (min-width: 1024px) {
+  .notepad__container.button-container {
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 30%;
+  }
+  .notepad__container.button-container.update-delete {
+    margin: 0.5rem 0.25rem;
+    width: fit-content;
+    justify-content: space-between;
+  }
 }
 .notepad__edit, .notepad__entry {
   padding: 0.25rem 0;
@@ -83,8 +110,19 @@ h1 {
 .notepad__head {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   margin: 0.75rem 0;
+}
+@media (min-width: 1024px) {
+  .notepad__head {
+    align-items: space-between;
+    flex-direction: row;
+  }
+  .notepad__head.new-note {
+    flex-direction: column;
+  }
+}
+.notepad__head.notepad-name {
+  justify-content: space-between;
 }
 .notepad__input {
   padding: 1em;
@@ -92,6 +130,16 @@ h1 {
 }
 .notepad__input.text-input {
   min-height: 10rem;
+}
+@media (min-width: 1024px) {
+  .notepad__input.title-input {
+    width: 35%;
+  }
+}
+@media (min-width: 1024px) {
+  .notepad__input {
+    width: 60%;
+  }
 }
 .add-button {
   background: #57b93e;
@@ -103,6 +151,12 @@ h1 {
 
 .delete-button {
   background: #ec3646;
+}
+
+@media (min-width: 1024px) {
+  .update-button {
+    margin-right: 1rem;
+  }
 }
 
 .add-button, .save-button, .update-button, .delete-button {

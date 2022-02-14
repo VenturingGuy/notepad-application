@@ -65,7 +65,7 @@ function editNotepad(index) {
   notepadTitle.innerText = "Notepad Title";
 
   const notepadNameContainer = document.createElement("div");
-  notepadNameContainer.setAttribute("class", "notepad__head");
+  notepadNameContainer.setAttribute("class", "notepad__head notepad-name");
 
   const buttonContainer = document.createElement("div");
   buttonContainer.setAttribute("class", "notepad__container button-container");
@@ -93,11 +93,8 @@ function editNotepad(index) {
   const notepadTitleInput = document.createElement("input");
   notepadTitleInput.value = notepads[index].notepadTitle;
   notepadTitleInput.setAttribute("id", `notepad-${index}-title`);
-  
-
+  notepadTitleInput.setAttribute("class", "notepad__input title-input");
   notepadTitleInput.innerText = notepads[index].notepadTitle;
-
-  notepadTitleInput.setAttribute("class", "notepad__input");
 
   container.appendChild(section);
   section.appendChild(form);
@@ -168,10 +165,8 @@ function displayNotes(index) {
 
   const header = document.createElement("h4");
   
-  const newNameContainer = document.createElement("div");
-  newNameContainer.setAttribute("class", "notepad__head");
-  const newTextContainer = document.createElement("div");
-  newTextContainer.setAttribute("class", "notepad__head");
+  const newContainer = document.createElement("div");
+  newContainer.setAttribute("class", "notepad__head new-note");
 
   const noteText = document.createElement("label");
   noteText.setAttribute("class", "notepad__label");
@@ -192,14 +187,13 @@ function displayNotes(index) {
   newTitleInput.setAttribute("placeholder", "Enter Note Title...");
   newTextInput.setAttribute("placeholder", "Enter Note...");
 
-  form.appendChild(newNameContainer);
-  newNameContainer.appendChild(newTitleInput);
-  
-  form.appendChild(newTextContainer);
-  newTextContainer.appendChild(noteText);
-  newTextContainer.appendChild(newTextInput);
+  form.appendChild(newContainer);
+  newContainer.appendChild(newTitleInput);
 
-  form.appendChild(addNote);
+  newContainer.appendChild(noteText);
+  newContainer.appendChild(newTextInput);
+
+  newContainer.appendChild(addNote);
   
   currentNotepad.notes.forEach((note, index) => {
 
@@ -209,7 +203,7 @@ function displayNotes(index) {
     form.appendChild(container);
 
     const buttonContainer = document.createElement("div");
-    buttonContainer.setAttribute("class", "notepad__container button-container");
+    buttonContainer.setAttribute("class", "notepad__container button-container update-delete");
 
     const noteNameContainer = document.createElement("div");
     noteNameContainer.setAttribute("class", "notepad__head");
