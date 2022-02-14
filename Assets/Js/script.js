@@ -86,7 +86,10 @@ function editNotepad(index) {
   deleteNotepad.innerText = "Delete";
   deleteNotepad.setAttribute("id", "delete-notepad");
   deleteNotepad.setAttribute("class", "notepad__button delete-button");
-
+  deleteNotepad.onclick = () => {
+    notepads.splice(index, 1);
+    localStorage.setItem("notepads", JSON.stringify(notepads));
+  }
   const notepadTitleInput = document.createElement("input");
   notepadTitleInput.value = notepads[index].notepadTitle;
   notepadTitleInput.setAttribute("id", `notepad-${index}-title`);
