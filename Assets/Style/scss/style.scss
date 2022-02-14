@@ -68,6 +68,9 @@ h1 {
   &__input {
     padding: 1em;
     margin: 0.25rem;
+    &.text-input{
+      min-height: 10rem;
+    }
   }
   &__label {
   }

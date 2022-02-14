@@ -179,8 +179,8 @@ function displayNotes(index) {
   const newTitleInput = document.createElement("input");
   newTitleInput.setAttribute("class", "notepad__input");
 
-  const newTextInput = document.createElement("input");
-  newTextInput.setAttribute("class", "notepad__input");
+  const newTextInput = document.createElement("textarea");
+  newTextInput.setAttribute("class", "notepad__input text-input");
 
   header.innerText = "My Notes";
   
@@ -220,8 +220,8 @@ function displayNotes(index) {
     noteTitleInput.setAttribute("class", "notepad__input");
     noteTitleInput.setAttribute("id", `note-${index}-title`);
 
-    const noteTextInput = document.createElement("input");
-    noteTextInput.setAttribute("class", "notepad__input");
+    const noteTextInput = document.createElement("textarea");
+    noteTextInput.setAttribute("class", "notepad__input text-input");
     noteTextInput.setAttribute("id", `note-${index}-text`);
 
     noteTitleInput.value = note.noteTitle;

@@ -90,6 +90,9 @@ h1 {
   padding: 1em;
   margin: 0.25rem;
 }
+.notepad__input.text-input {
+  min-height: 10rem;
+}
 .add-button {
   background: #57b93e;
 }
