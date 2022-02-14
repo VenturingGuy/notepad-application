@@ -22,16 +22,16 @@
           </section>
           <section class="notepad__creation" hidden>
             <form onsubmit="storeNotepad()" class="notepad__form">
-              <div class="notepad__head">
+              <div class="notepad__head new-notepad-title">
                 <label class="notepad__label" id="user-notepad" for="new-notepad-title">Notepad Title (Required)</label>
-                <input class="notepad__input" type="text" name="new-notepad-title" id="new-notepad-title" maxlength="255" placeholder="My notepad title..." required>
+                <input class="notepad__input title-input" type="text" name="new-notepad-title" id="new-notepad-title" maxlength="255" placeholder="My notepad title..." required>
+                <button class="notepad__button save-button" id="save-notepad">Save</button>
               </div>
-              <button class="notepad__button save-button" id="save-notepad">Save</button>
-              <div class="notepad__head">
+              <div class="notepad__head new-note-title">
                 <label class="notepad__label" for="note-title">New Note (Required)</label>
                 <input class="notepad__input" type="text" name="note-title" id="new-note-title" maxlength="255" placeholder="Enter note title..." required>
               </div>
-              <div class="notepad__head">
+              <div class="notepad__head new-note-text">
                 <input class="notepad__input" for="note-content" name="note-text" id="new-note-text" maxlength="1000" placeholder="Enter note text..." required>
               </div>
             </form>

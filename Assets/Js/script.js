@@ -169,9 +169,6 @@ function displayNotes(index) {
   const newContainer = document.createElement("div");
   newContainer.setAttribute("class", "notepad__head new-note");
 
-  const noteText = document.createElement("label");
-  noteText.setAttribute("class", "notepad__label");
-
   const newTitleInput = document.createElement("input");
   newTitleInput.setAttribute("class", "notepad__input");
 
@@ -191,7 +188,6 @@ function displayNotes(index) {
   form.appendChild(newContainer);
   newContainer.appendChild(newTitleInput);
 
-  newContainer.appendChild(noteText);
   newContainer.appendChild(newTextInput);
 
   newContainer.appendChild(addNote);
@@ -240,7 +236,6 @@ function displayNotes(index) {
     noteNameContainer.appendChild(noteTitleInput);
     
     container.appendChild(noteTextContainer);
-    noteTextContainer.appendChild(noteText);
     noteTextContainer.appendChild(noteTextInput);
 
     container.appendChild(buttonContainer);

@@ -69,6 +69,10 @@ h1 {
   }
 }
 
+textarea {
+  resize: none;
+}
+
 .notepad__button {
   min-width: 30%;
   border: none;
@@ -108,10 +112,23 @@ h1 {
   .notepad__creation {
     display: flex;
   }
+  .notepad__creation .notepad__form {
+    width: 100%;
+  }
+  .notepad__creation .save-button {
+    min-width: fit-content;
+    max-width: 12.5%;
+  }
 }
 .notepad__edit, .notepad__entry {
   padding: 0.25rem 0;
   margin: 0.5rem 0;
+}
+@media (min-width: 1024px) {
+  .notepad__form {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .notepad__head {
   display: flex;
@@ -120,11 +137,13 @@ h1 {
 }
 @media (min-width: 1024px) {
   .notepad__head {
-    align-items: space-between;
     flex-direction: row;
   }
-  .notepad__head.new-note {
+  .notepad__head.new-note, .notepad__head.new-notepad-title, .notepad__head.new-note-title {
     flex-direction: column;
+  }
+  .notepad__head.new-note button, .notepad__head.new-notepad-title button, .notepad__head.new-note-title button {
+    margin: 0.5rem 0.25rem;
   }
 }
 .notepad__head.notepad-name {
@@ -145,6 +164,13 @@ h1 {
 @media (min-width: 1024px) {
   .notepad__input {
     width: 60%;
+  }
+}
+@media (min-width: 1024px) {
+  .notepad__label {
+    align-self: start;
+    min-width: fit-content;
+    margin: 0.25rem;
   }
 }
 .notepad__savednotepads {
