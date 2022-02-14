@@ -1,7 +1,3 @@
-var fileref=document.createElement("link")
-fileref.setAttribute("rel", "stylesheet")
-fileref.setAttribute("type", "text/css")
-fileref.setAttribute("href", "/Assets/Style/css/style.css")
 let notepads = [{
     notepadTitle: "",
     notes: []
@@ -23,7 +19,7 @@ function storeNotepad() {
   console.log(notepads);
   console.log(notepads[newIndex]);
   let notes = storeNote();
-  notepads[0].notepadTitle === "" ? notepads[0] = {notepadTitle, notes} : notepads.push({notepadTitle, notes});
+  !notepads ? notepads[0] = {notepadTitle, notes} : notepads.push({notepadTitle, notes});
   localStorage.setItem("notepads", JSON.stringify(notepads));
 }
 
@@ -88,6 +84,13 @@ function editNotepad(index) {
   deleteNotepad.setAttribute("class", "notepad__button delete-button");
   deleteNotepad.onclick = () => {
     notepads.splice(index, 1);
+    console.log(notepads);
+    if (notepads === []) {() => notepads =  [{
+        notepadTitle: "",
+        notes: []
+      }];
+    }
+    console.log(notepads);
     localStorage.setItem("notepads", JSON.stringify(notepads));
   }
   const notepadTitleInput = document.createElement("input");
@@ -110,16 +113,18 @@ function editNotepad(index) {
 }
 
 function storeNote() {
-  const noteTitle = document.getElementById("note-title").value;
-  const noteText = document.getElementById("note-text").value;
+  const noteTitle = document.getElementById("new-note-title").value;
+  const noteText = document.getElementById("new-note-text").value;
   const newNote = [{noteTitle, noteText}];
   return newNote;
 }
 
 function listNotepads() {
+  const wrapper = document.querySelector(".wrapper");
   const container = document.querySelector(".notepad__savednotepads");
+  
   const button = document.createElement("button");
-  button.setAttribute("class", "notepad__button");
+  button.setAttribute("class", "notepad__button notepad-creation");
   button.innerHTML = "New Notepad";
   button.onclick = () => {
     document.querySelector(".notepad__creation").toggleAttribute("hidden");
@@ -141,10 +146,6 @@ function listNotepads() {
     })
   }
   container.appendChild(button);
-}
-
-function notePlaceholder(title, text) {
-
 }
 
 function pushNote(currentNotepad, newNote){

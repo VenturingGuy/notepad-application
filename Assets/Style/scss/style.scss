@@ -5,13 +5,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 html, body {
-  
   height: 100%;
   text-align: center;
 }
 body {
+  max-width: 1024px;
   background: $body-background;
 }
 
@@ -51,10 +52,10 @@ h2, h3, h4, h5 {
       cursor: pointer;
     }
     @media (min-width: 1024px) {
-      &.add-button {
+      &.add-button, &.notepad-creation {
         margin: 0.5rem 0.25rem;
         min-width: 5%;
-        max-width: 10%;
+        max-width: 12.5%;
       }
     }
   }
@@ -76,6 +77,9 @@ h2, h3, h4, h5 {
     }
   }
   &__creation {
+    @media (min-width: 1024px){
+      display: flex;
+    }
   }
   &__current {
   }
@@ -119,6 +123,8 @@ h2, h3, h4, h5 {
   &__label {
   }
   &__savednotepads {
+    display: flex;
+    flex-direction: column;
   }
 }
 

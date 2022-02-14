@@ -39,6 +39,7 @@ html, body {
 }
 
 body {
+  max-width: 1024px;
   background: #eee;
 }
 
@@ -80,10 +81,10 @@ h1 {
   cursor: pointer;
 }
 @media (min-width: 1024px) {
-  .notepad__button.add-button {
+  .notepad__button.add-button, .notepad__button.notepad-creation {
     margin: 0.5rem 0.25rem;
     min-width: 5%;
-    max-width: 10%;
+    max-width: 12.5%;
   }
 }
 .notepad__container {
@@ -101,6 +102,11 @@ h1 {
     margin: 0.5rem 0.25rem;
     width: fit-content;
     justify-content: space-between;
+  }
+}
+@media (min-width: 1024px) {
+  .notepad__creation {
+    display: flex;
   }
 }
 .notepad__edit, .notepad__entry {
@@ -141,6 +147,11 @@ h1 {
     width: 60%;
   }
 }
+.notepad__savednotepads {
+  display: flex;
+  flex-direction: column;
+}
+
 .add-button {
   background: #57b93e;
 }
