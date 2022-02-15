@@ -3,7 +3,6 @@ let notepads = [{
     notes: []
 }];
 
-
 updatePage();
 listNotepads();
 
