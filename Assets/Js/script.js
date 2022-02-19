@@ -1,11 +1,21 @@
+
 let notepads = [{
     notepadTitle: "",
     notes: []
 }];
 
+
+import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+const octokit = new Octokit({ auth: "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" })
+async function getData() {
+  const result = await octokit.request('GET /gists')
+  console.log(result);
+}
+
 updatePage();
 listNotepads();
 
+getData();
 function updatePage() {
   if (localStorage.getItem("notepads")){
     notepads = JSON.parse(localStorage.getItem("notepads"));

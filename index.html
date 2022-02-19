@@ -39,6 +39,17 @@
         </div>
       </section>
     </div>
-    <script src="/Assets/Js/script.js"></script>
+    <script src="/Assets/Js/script.js" type="module"></script>
+    <script type="module">
+      // note differences between script js implementation and implementation here
+      // script js method results in data array occasionally being empty, must look into this later
+      // import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+      // import { request } from "https://cdn.skypack.dev/@octokit/request";
+      // async function getData() {
+      //   const result = await request('GET /gists')
+      //   console.log(result);
+      // }
+      // getData();
+    </script>
   </body>
 </html>
