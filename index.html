@@ -16,6 +16,11 @@
     <div class="wrapper">
       <section class="wrapper__notepads">
         <h2>My Notepads</h2>
+        <div class="chart__container">
+          <div class="chart__canvas">
+            <canvas id="canvas"></canvas>
+          </div>
+        </div>
         <div class="notepad">
           <section class="notepad__savednotepads">
             <!-- saved notepad elements will be inserted here via the displayNotepads function -->
@@ -39,17 +44,7 @@
         </div>
       </section>
     </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script src="/Assets/Js/script.js" type="module"></script>
-    <script type="module">
-      // note differences between script js implementation and implementation here
-      // script js method results in data array occasionally being empty, must look into this later
-      // import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
-      // import { request } from "https://cdn.skypack.dev/@octokit/request";
-      // async function getData() {
-      //   const result = await request('GET /gists')
-      //   console.log(result);
-      // }
-      // getData();
-    </script>
   </body>
 </html>

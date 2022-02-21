@@ -1,21 +1,89 @@
+import { request } from "https://cdn.skypack.dev/@octokit/request";
+
+// Create empty array
+let gists = [];
+
+// 
+window.addEventListener("load", loadGists);
+
+
+async function getData(gists) {
+  const result = await request('GET /gists/public')
+  // Use map to store every time from the call to the time_buckets array, the sort function lists them from earliest to latest
+  const time_buckets = result.data.map((element) => {
+    const time = new Date(element.created_at);
+    return time.toLocaleTimeString("en-US");
+  }).sort((a, b) => {return a.localeCompare(b)})
+  
+  result.data.forEach((entry, index) => {
+    gists.push(entry);
+    // const time = new Date(entry.created_at);
+    // time_buckets.push(time.toLocaleTimeString("en-US"));
+    // console.log(time_buckets);
+  });
+  console.log(time_buckets);
+  const data = (result.data);
+  console.log(data);
+  console.log(result);
+  console.log(gists[0]);
+  console.log(result.data);
+  console.log(gists);
+  // gists.push(data);
+}
+
+function loadGists() {
+  console.log("loaded!")
+  getData(gists);
+
+  console.log(gists);
+  console.log(Array.isArray(gists));
+
+
+  const ctx = document.getElementById('canvas').getContext('2d');
+  const myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              label: 'Gists Created',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+}
 
 let notepads = [{
     notepadTitle: "",
     notes: []
 }];
 
-
-import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
-const octokit = new Octokit({ auth: "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" })
-async function getData() {
-  const result = await octokit.request('GET /gists')
-  console.log(result);
-}
-
 updatePage();
 listNotepads();
 
-getData();
 function updatePage() {
   if (localStorage.getItem("notepads")){
     notepads = JSON.parse(localStorage.getItem("notepads"));
