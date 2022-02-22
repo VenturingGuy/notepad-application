@@ -1,52 +1,40 @@
+
 import { request } from "https://cdn.skypack.dev/@octokit/request";
 
-// Create empty array
-let gists = [];
-
-// 
 window.addEventListener("load", loadGists);
 
-
-async function getData(gists) {
-  const result = await request('GET /gists/public')
+async function loadGists() {
+  console.log("loaded!")
+  const result = await request('GET /gists/public', {per_page: 100})
+  console.log(result);
   // Use map to store every time from the call to the time_buckets array, the sort function lists them from earliest to latest
   const time_buckets = result.data.map((element) => {
     const time = new Date(element.created_at);
     return time.toLocaleTimeString("en-US");
   }).sort((a, b) => {return a.localeCompare(b)})
-  
-  result.data.forEach((entry, index) => {
-    gists.push(entry);
-    // const time = new Date(entry.created_at);
-    // time_buckets.push(time.toLocaleTimeString("en-US"));
-    // console.log(time_buckets);
+
+  const gists = result.data.map((entry) => {
+    return(entry)
   });
+
+  const gistList = gists.filter((gist) => {
+    const time = new Date(gist.created_at);
+    return time.toLocaleTimeString("en-US") === time_buckets[0];
+  });
+  console.log(gists);
+  console.log(gistList);
   console.log(time_buckets);
-  const data = (result.data);
-  console.log(data);
-  console.log(result);
-  console.log(gists[0]);
-  console.log(result.data);
-  console.log(gists);
-  // gists.push(data);
-}
-
-function loadGists() {
-  console.log("loaded!")
-  getData(gists);
-
-  console.log(gists);
-  console.log(Array.isArray(gists));
 
 
   const ctx = document.getElementById('canvas').getContext('2d');
   const myChart = new Chart(ctx, {
       type: 'line',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: [ time_buckets[0], time_buckets[1], time_buckets[2], time_buckets[3], time_buckets[4], time_buckets[5],
+          time_buckets[6], time_buckets[7] ],
           datasets: [{
               label: 'Gists Created',
-              data: [12, 19, 3, 5, 2, 3],
+              data: [gists.length, 19, 3, 5, 2, 3],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -69,7 +57,11 @@ function loadGists() {
       options: {
           scales: {
               y: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: "Number of Gists"
+                  }
               }
           }
       }
