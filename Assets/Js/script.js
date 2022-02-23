@@ -8,15 +8,15 @@ async function loadGists() {
   const result = await request('GET /gists/public', {per_page: 100})
   console.log(result);
   
-  const init_time = new Date(result.data[0].created_at);
-  const time_buckets = [init_time.toLocaleTimeString("en-US")];
+  const initTime = new Date(result.data[0].created_at);
+  const timeBuckets = [initTime.toLocaleTimeString("en-US")];
   for (let i=1; i<8; i++){
-    const new_time = new Date(init_time);
-    new_time.setSeconds(new_time.getSeconds() + (5*i));
-    time_buckets.push(new_time.toLocaleTimeString("en-US"));
+    const newTime = new Date(initTime);
+    newTime.setSeconds(newTime.getSeconds() + (5*i));
+    timeBuckets.push(newTime.toLocaleTimeString("en-US"));
   }
-  console.log(init_time);
-  console.log(time_buckets);
+  console.log(initTime);
+  console.log(timeBuckets);
   // Use map to store every time from the call to the time_buckets array, the sort function lists them from earliest to latest
   // const time_buckets = result.data.map((element) => {
   //   const time = new Date(element.created_at);
@@ -34,25 +34,20 @@ async function loadGists() {
     return(entry)
   });
 
-  console.log(time_buckets);
-  console.log(time_buckets[1]);
+  console.log(gists[0].created_at)
 
-  const gistList = gists.filter((gist) => {
-    const time = new Date(gist.created_at);
+  console.log(timeBuckets);
+  console.log(timeBuckets[1]);
 
-    return parseInt(time) === Date.parse(parseInt(time_buckets[0]));
-  });
-  console.log(gists);
-  console.log(gists[0].files)
+  const gistList = [];
   console.log(gistList);
-  console.log(time_buckets);
 
 
   const ctx = document.getElementById('canvas').getContext('2d');
   const myChart = new Chart(ctx, {
       type: 'line',
       data: {
-          labels: time_buckets,
+          labels: timeBuckets,
           datasets: [{
               label: 'Gists Created',
               data: [gists.length, 19, 3, 5, 2, 3],
