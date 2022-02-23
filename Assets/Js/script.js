@@ -7,21 +7,43 @@ async function loadGists() {
   console.log("loaded!")
   const result = await request('GET /gists/public', {per_page: 100})
   console.log(result);
+  
+  const init_time = new Date(result.data[0].created_at);
+  const time_buckets = [init_time.toLocaleTimeString("en-US")];
+  for (let i=1; i<8; i++){
+    const new_time = new Date(init_time);
+    new_time.setSeconds(new_time.getSeconds() + (5*i));
+    time_buckets.push(new_time.toLocaleTimeString("en-US"));
+  }
+  console.log(init_time);
+  console.log(time_buckets);
   // Use map to store every time from the call to the time_buckets array, the sort function lists them from earliest to latest
-  const time_buckets = result.data.map((element) => {
-    const time = new Date(element.created_at);
-    return time.toLocaleTimeString("en-US");
-  }).sort((a, b) => {return a.localeCompare(b)})
+  // const time_buckets = result.data.map((element) => {
+  //   const time = new Date(element.created_at);
+  //   for (let i=0; i<8; i++){
+  //     if (i===0){
+  //       return time.toLocaleTimeString("en-US");
+  //     }
+  //     let newTime = time.setSeconds(time.getSeconds() + 5);
+  //     return newTime.toLocaleTimeString("en-US");
+  //   }
+  //   return time.toLocaleTimeString("en-US");
+  // }).sort((a, b) => {return a.localeCompare(b)})
 
   const gists = result.data.map((entry) => {
     return(entry)
   });
 
+  console.log(time_buckets);
+  console.log(time_buckets[1]);
+
   const gistList = gists.filter((gist) => {
     const time = new Date(gist.created_at);
-    return time.toLocaleTimeString("en-US") === time_buckets[0];
+
+    return parseInt(time) === Date.parse(parseInt(time_buckets[0]));
   });
   console.log(gists);
+  console.log(gists[0].files)
   console.log(gistList);
   console.log(time_buckets);
 
@@ -30,8 +52,7 @@ async function loadGists() {
   const myChart = new Chart(ctx, {
       type: 'line',
       data: {
-          labels: [ time_buckets[0], time_buckets[1], time_buckets[2], time_buckets[3], time_buckets[4], time_buckets[5],
-          time_buckets[6], time_buckets[7] ],
+          labels: time_buckets,
           datasets: [{
               label: 'Gists Created',
               data: [gists.length, 19, 3, 5, 2, 3],
